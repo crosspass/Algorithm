@@ -2,6 +2,7 @@ package main
 
 import "fmt"
 
+# 程序之美--寻找水王
 func find(d []int) int {
 	var i, t int
 	for _, v := range d {
@@ -17,6 +18,7 @@ func find(d []int) int {
 	return t
 }
 
+# 归并排序
 func resort_d(d []int, start, end int) {
 	if start >= end {
 		return
@@ -50,9 +52,8 @@ func resort(d []int) {
 }
 
 func main() {
-	a := []int{7, 7, 11, 7 9, 7, 7, 6, 5, 7, 3, 7, 1}
-	t := find(a)
-    fmt.Println(find(a))
+	a := []int{7, 7, 11, 7, 9, 7, 7, 6, 5, 7, 3, 7, 1}
+    	fmt.Println(find(a))
     
 	resort(a)
 	fmt.Println(a)
