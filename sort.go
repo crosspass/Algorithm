@@ -1,9 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-// 程序之美-寻找水王
-func find(d []int) int {
+func Find(d []int) int {
 	var i, t int
 	for _, v := range d {
 		if i == 0 {
@@ -18,15 +20,14 @@ func find(d []int) int {
 	return t
 }
 
-// 归并排序
-func resort_d(d []int, start, end int) {
+func resortD(d []int, start, end int) {
 	if start >= end {
 		return
 	}
 	mid := (start + end) >> 1
-	resort_d(d, start, mid)
+	resortD(d, start, mid)
 	mid++
-	resort_d(d, mid, end)
+	resortD(d, mid, end)
 	dl := make([]int, (mid - start))
 	copy(dl, d[start:mid])
 	var k int
@@ -47,11 +48,11 @@ func resort_d(d []int, start, end int) {
 	}
 }
 
-func resort(d []int) {
-	resort_d(d, 0, len(d)-1)
+func Resort(d []int) {
+	resortD(d, 0, len(d)-1)
 }
 
-func find_one(d int) (count int) {
+func findOne(d int) (count int) {
 	for d != 0 {
 		if t := d % 10; t == 1 {
 			count++
@@ -61,19 +62,41 @@ func find_one(d int) (count int) {
 	return
 }
 
-// 程序之美-寻找1的个数
-func find_ones(d int) (sum int) {
+func FindOnes(d int) (sum int) {
 	for i := 0; i <= d; i++ {
-		sum += find_one(i)
+		sum += findOne(i)
+	}
+	return
+}
+
+func V2FindOnes(d int) (count int) {
+	for i, tail := 1, 0; d != 0; {
+		b := d % 10
+		d /= 10
+		switch {
+		case b == 0:
+			count += d * i
+		case b == 1:
+			count += d*i + tail + 1
+		case b > 1:
+			count += (d + 1) * i
+		}
+		tail += b * i
+		i *= 10
 	}
 	return
 }
 
 func main() {
 	a := []int{7, 7, 11, 7, 9, 7, 7, 6, 5, 7, 3, 7, 1}
-	fmt.Println(find(a))
+	fmt.Println(Find(a))
 
-	resort(a)
+	Resort(a)
 	fmt.Println(a)
-	fmt.Println(find_ones(12))
+	t := time.Now()
+	fmt.Println(FindOnes(33))
+	fmt.Println(time.Now().Sub(t).Nanoseconds())
+	t = time.Now()
+	fmt.Println(V2FindOnes(33))
+	fmt.Println(time.Now().Sub(t).Nanoseconds())
 }
