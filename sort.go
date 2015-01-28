@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+// 编程之美-寻找水王
 func Find(d []int) int {
 	var i, t int
 	for _, v := range d {
@@ -20,6 +21,7 @@ func Find(d []int) int {
 	return t
 }
 
+// 递归排序
 func resortD(d []int, start, end int) {
 	if start >= end {
 		return
@@ -62,6 +64,7 @@ func findOne(d int) (count int) {
 	return
 }
 
+// 寻找数字1-编程之美
 func FindOnes(d int) (sum int) {
 	for i := 0; i <= d; i++ {
 		sum += findOne(i)
@@ -69,6 +72,7 @@ func FindOnes(d int) (sum int) {
 	return
 }
 
+// 寻找数字1v2版本-编程之美
 func V2FindOnes(d int) (count int) {
 	for i, tail := 1, 0; d != 0; {
 		b := d % 10
@@ -85,6 +89,10 @@ func V2FindOnes(d int) (count int) {
 		i *= 10
 	}
 	return
+}
+
+// 精确表达浮点数-编程之美
+func DisplayFloatNumber(f float32) string {
 }
 
 func main() {
